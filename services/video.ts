@@ -5,8 +5,8 @@ import moment from "moment";
 
 export const getVideosFromFile = async (): Promise<Video[]> => {
   try {
-    // const dataFile = process.env.VIDEOS_DATA_FILE;
-    const dataFile = "models/video.json";
+    const dataFile = process.env.VIDEOS_DATA_FILE;
+// const dataFile = "models/video.json";
     if (!dataFile) {
       return [];
     }
