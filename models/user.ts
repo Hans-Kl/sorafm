@@ -5,13 +5,14 @@ export async function insertUser(user: User) {
   const createdAt: string = new Date().toISOString();
 
   const db = await getDb();
+  console.log(user);
   const res = await db.query(
     `INSERT INTO users 
-      (email, nickname, avatar_url, created_at, uuid) 
+      (email, phone, nickname, avatar_url, created_at, uuid) 
       VALUES 
-      ($1, $2, $3, $4, $5)
+      ($1, $2, $3, $4, $5, $6)
   `,
-    [user.email, user.nickname, user.avatar_url, createdAt, user.uuid]
+    [user.email, user.phone, user.nickname, user.avatar_url, createdAt, user.uuid]
   );
 
   return res;
@@ -32,6 +33,7 @@ export async function findUserByEmail(
   const row = rows[0];
   const user: User = {
     email: row.email,
+    phone: row.phone,
     nickname: row.nickname,
     avatar_url: row.avatar_url,
     created_at: row.created_at,
@@ -54,6 +56,7 @@ export async function findUserByUuid(uuid: string): Promise<User | undefined> {
   const row = rows[0];
   const user: User = {
     email: row.email,
+    phone: row.phone,
     nickname: row.nickname,
     avatar_url: row.avatar_url,
     created_at: row.created_at,

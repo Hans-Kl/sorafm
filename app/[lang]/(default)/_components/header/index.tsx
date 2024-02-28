@@ -36,7 +36,7 @@ export default function ({ lang, dict }: { lang: string; dict: any }) {
 
             <div className="flex flex-row items-center lg:flex lg:flex-row lg:space-x-3 lg:space-y-0">
               <div className="md:block mr-4 text-white">
-                <Social />
+                {/* <Social /> */}
               </div>
               <div>
                 <Langswitch />

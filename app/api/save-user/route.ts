@@ -6,12 +6,19 @@ import { saveUser } from "@/services/user";
 
 export async function POST(req: Request) {
   try {
-    const { email } = await req.json();
-    if (!email) {
+    const body = await req.json();
+
+    let email: string = body.email ?? "";
+    let phone: string = body.phone ?? "";
+
+    if (!email && !phone) {
       return respErr("invalid params");
     }
-    if (!email.includes("@")) {
+    if (email && !email.includes("@")) {
       return respErr("invalid email");
+    }
+    if (phone && !isValidPhoneNumber(phone)) {
+      return respErr("invalid phone number");
     }
 
     const created_at = new Date().toISOString();
@@ -19,6 +26,7 @@ export async function POST(req: Request) {
 
     const user: User = {
       email: email,
+      phone: phone,
       nickname: "",
       avatar_url: "",
       created_at: created_at,
@@ -33,4 +41,11 @@ export async function POST(req: Request) {
     console.log("save user failed", e);
     return respErr("save user failed");
   }
+}
+
+function isValidPhoneNumber(phoneNumber: string): boolean {
+  // 使用正则表达式匹配电话号码的模式
+  const phonePattern = /^\+\d+$/;
+  // 检查是否匹配模式并且字符串长度是否合适
+  return phonePattern.test(phoneNumber);
 }

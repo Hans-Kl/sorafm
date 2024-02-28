@@ -12,7 +12,7 @@ export default function ({ dict }: { dict: any }) {
           {dict.brand.sub_title}
         </h2>
 
-        <Producthunt />
+        {/* <Producthunt /> */}
 
         <Input dict={dict} />
 

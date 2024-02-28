@@ -17,8 +17,8 @@ export async function generateMetadata({
 
   return {
     title: {
-      template: `%s, ${dict.brand.title} | Sora.FM`,
-      default: `${dict.brand.title} | Sora.FM`,
+      template: `%s, ${dict.brand.title} | AISora.one`,
+      default: `${dict.brand.title} | AISora.one`,
     },
     description: `${dict.brand.title}, ${dict.brand.sub_title}`,
     keywords:
